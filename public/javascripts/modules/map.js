@@ -2,11 +2,11 @@ import axios from 'axios';
 import { $ } from './bling'
 
 const mapOptions = {
-  center: { lat: 43.2, lng: -79.8 },
+  center: { lat: 43.6532, lng: -79.3832 },
   zoom: 8
 };
 
-function loadPlaces(map, lat = 43.2, lng = -79.8) {
+function loadPlaces(map, lat = 43.6532, lng = -79.3832) {
   axios.get(`/api/stores/near?lat=${lat}&lng=${lng}`)
     .then(res => {
       const places = res.data;
