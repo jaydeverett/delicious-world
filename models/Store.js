@@ -60,7 +60,7 @@ storeSchema.pre('save', async function(next) {
   //find other stores that have a slug of jay-1, jay-2, jay-3
   const slugRegEx = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i');
   const storesWithSlug = await this.constructor.find({ slug: slugRegEx });
-  if(storesWithSlug.length) {
+  if (storesWithSlug.length) {
     this.slug = `${this.slug}-${storesWithSlug.length + 1}`;
   }
 
@@ -81,7 +81,7 @@ storeSchema.statics.getTopStores = function() {
     //lookup stores and populate their reviews
     { $lookup: { from: 'reviews', localField: '_id', foreignField: 'store', as: 'reviews' } },
     //filter for only items that have 2 or more reviews
-    { $match: { 'reviews.1' : { $exists: true } } },
+    { $match: { 'reviews.1': { $exists: true } } },
     //add the average review fields
     { $project: {
       photo: '$$ROOT.photo',
